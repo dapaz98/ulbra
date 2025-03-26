@@ -30,7 +30,18 @@ two.bind("update", function () {
 
 two.play();
 
-// Exemplo 2: Círculo
+// Exemplo 2: Polígono Regular
+const polygonParams = { width: 500, height: 500 };
+const twoPolygon = createTwoInstance("polygon-example", polygonParams);
+
+const polygon = twoPolygon.makePolygon(250, 250, 100, 6);
+polygon.fill = "red"; 
+polygon.stroke = "black"; 
+polygon.linewidth = 2;
+
+twoPolygon.update();
+
+// Exemplo 3: Círculo
 const circleParams = { width: 500, height: 500 };
 const twoCircle = createTwoInstance("circle-example", circleParams);
 
@@ -50,17 +61,6 @@ twoCircle.bind("update", function () {
 });
 
 twoCircle.play();
-
-// Exemplo 3: Polígono Regular
-const polygonParams = { width: 500, height: 500 };
-const twoPolygon = createTwoInstance("polygon-example", polygonParams);
-
-const polygon = twoPolygon.makePolygon(250, 250, 100, 6);
-polygon.fill = "red"; 
-polygon.stroke = "black"; 
-polygon.linewidth = 2;
-
-twoPolygon.update();
 
 
 

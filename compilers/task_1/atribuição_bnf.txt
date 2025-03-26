@@ -1,0 +1,16 @@
+<atribuição> ::= <identificador> "=" <expressão> ";"
+
+<expressão> ::= <termo> | <expressão> <operador> <termo>
+<termo> ::= <identificador> | <número>
+
+<operador> ::= "+" | "-" | "*" | "/" | "%"
+
+<identificador> ::= <letra> <resto-identificador> 
+<resto-identificador> ::= "" | <letra> <resto-identificador> | <dígito> <resto-identificador> | "_" <resto-identificador>
+
+<número> ::= <dígito> <resto-número>
+<resto-número> ::= "" | <dígito> <resto-número>
+
+<letra> ::= "a" | "b" | ... | "z" | "A" | "B" | ... | "Z"
+<dígito> ::= "0" | "1" | "2" | ... | "9"
+
