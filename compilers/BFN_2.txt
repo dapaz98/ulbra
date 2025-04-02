@@ -1,0 +1,28 @@
+<function> ::= <type> <identifier> "(" <parameters> ")" "{" <body> "}"
+
+<type> ::= "int" | "float" | "double" | "char" | "void"
+
+<identifier> ::= <letter> { <letter> | <digit> | "_" }
+
+<parameters> ::= <parameter> { "," <parameter> } | "void" | ε
+
+<parameter> ::= <type> <identifier>
+
+<body> ::= { <statement> } <return_statement>
+
+<statement> ::= <assignment> ";"
+
+<assignment> ::= <identifier> "=" <expression>
+
+<expression> ::= <identifier> | <constant> | <expression> <operator> <expression>
+
+<constant> ::= <digit> { <digit> }
+
+<operator> ::= "+" | "-" | "*" | "/"
+
+<return_statement> ::= "return" <expression> ";"
+
+<letter> ::= "a" | "b" | ... | "z" | "A" | "B" | ... | "Z"
+
+<digit> ::= "0" | "1" | ... | "9"
+
