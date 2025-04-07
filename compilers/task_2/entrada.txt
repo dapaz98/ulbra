@@ -1,0 +1,6 @@
+palavra 123
+456
+hello world
+var=42
+nome1
+var86>
