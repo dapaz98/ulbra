@@ -1,0 +1,192 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> declaracoes
+Rule 1     declaracoes -> tipo lista_variaveis SEMICOLON
+Rule 2     tipo -> INT
+Rule 3     tipo -> FLOAT
+Rule 4     tipo -> CHAR_TYPE
+Rule 5     lista_variaveis -> variavel
+Rule 6     lista_variaveis -> lista_variaveis COMMA variavel
+Rule 7     variavel -> ID
+Rule 8     variavel -> ID EQUALS valor
+Rule 9     valor -> NUMBER
+Rule 10    valor -> CHAR
+Rule 11    valor -> STRING
+
+Terminals, with rules where they appear
+
+CHAR                 : 10
+CHAR_TYPE            : 4
+COMMA                : 6
+EQUALS               : 8
+FLOAT                : 3
+ID                   : 7 8
+INT                  : 2
+NUMBER               : 9
+SEMICOLON            : 1
+STRING               : 11
+error                : 
+
+Nonterminals, with rules where they appear
+
+declaracoes          : 0
+lista_variaveis      : 1 6
+tipo                 : 1
+valor                : 8
+variavel             : 5 6
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . declaracoes
+    (1) declaracoes -> . tipo lista_variaveis SEMICOLON
+    (2) tipo -> . INT
+    (3) tipo -> . FLOAT
+    (4) tipo -> . CHAR_TYPE
+
+    INT             shift and go to state 3
+    FLOAT           shift and go to state 4
+    CHAR_TYPE       shift and go to state 5
+
+    declaracoes                    shift and go to state 1
+    tipo                           shift and go to state 2
+
+state 1
+
+    (0) S' -> declaracoes .
+
+
+
+state 2
+
+    (1) declaracoes -> tipo . lista_variaveis SEMICOLON
+    (5) lista_variaveis -> . variavel
+    (6) lista_variaveis -> . lista_variaveis COMMA variavel
+    (7) variavel -> . ID
+    (8) variavel -> . ID EQUALS valor
+
+    ID              shift and go to state 8
+
+    lista_variaveis                shift and go to state 6
+    variavel                       shift and go to state 7
+
+state 3
+
+    (2) tipo -> INT .
+
+    ID              reduce using rule 2 (tipo -> INT .)
+
+
+state 4
+
+    (3) tipo -> FLOAT .
+
+    ID              reduce using rule 3 (tipo -> FLOAT .)
+
+
+state 5
+
+    (4) tipo -> CHAR_TYPE .
+
+    ID              reduce using rule 4 (tipo -> CHAR_TYPE .)
+
+
+state 6
+
+    (1) declaracoes -> tipo lista_variaveis . SEMICOLON
+    (6) lista_variaveis -> lista_variaveis . COMMA variavel
+
+    SEMICOLON       shift and go to state 9
+    COMMA           shift and go to state 10
+
+
+state 7
+
+    (5) lista_variaveis -> variavel .
+
+    SEMICOLON       reduce using rule 5 (lista_variaveis -> variavel .)
+    COMMA           reduce using rule 5 (lista_variaveis -> variavel .)
+
+
+state 8
+
+    (7) variavel -> ID .
+    (8) variavel -> ID . EQUALS valor
+
+    SEMICOLON       reduce using rule 7 (variavel -> ID .)
+    COMMA           reduce using rule 7 (variavel -> ID .)
+    EQUALS          shift and go to state 11
+
+
+state 9
+
+    (1) declaracoes -> tipo lista_variaveis SEMICOLON .
+
+    $end            reduce using rule 1 (declaracoes -> tipo lista_variaveis SEMICOLON .)
+
+
+state 10
+
+    (6) lista_variaveis -> lista_variaveis COMMA . variavel
+    (7) variavel -> . ID
+    (8) variavel -> . ID EQUALS valor
+
+    ID              shift and go to state 8
+
+    variavel                       shift and go to state 12
+
+state 11
+
+    (8) variavel -> ID EQUALS . valor
+    (9) valor -> . NUMBER
+    (10) valor -> . CHAR
+    (11) valor -> . STRING
+
+    NUMBER          shift and go to state 14
+    CHAR            shift and go to state 15
+    STRING          shift and go to state 16
+
+    valor                          shift and go to state 13
+
+state 12
+
+    (6) lista_variaveis -> lista_variaveis COMMA variavel .
+
+    SEMICOLON       reduce using rule 6 (lista_variaveis -> lista_variaveis COMMA variavel .)
+    COMMA           reduce using rule 6 (lista_variaveis -> lista_variaveis COMMA variavel .)
+
+
+state 13
+
+    (8) variavel -> ID EQUALS valor .
+
+    SEMICOLON       reduce using rule 8 (variavel -> ID EQUALS valor .)
+    COMMA           reduce using rule 8 (variavel -> ID EQUALS valor .)
+
+
+state 14
+
+    (9) valor -> NUMBER .
+
+    SEMICOLON       reduce using rule 9 (valor -> NUMBER .)
+    COMMA           reduce using rule 9 (valor -> NUMBER .)
+
+
+state 15
+
+    (10) valor -> CHAR .
+
+    SEMICOLON       reduce using rule 10 (valor -> CHAR .)
+    COMMA           reduce using rule 10 (valor -> CHAR .)
+
+
+state 16
+
+    (11) valor -> STRING .
+
+    SEMICOLON       reduce using rule 11 (valor -> STRING .)
+    COMMA           reduce using rule 11 (valor -> STRING .)
+
