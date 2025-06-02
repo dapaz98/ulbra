@@ -14,27 +14,82 @@ Rule 8     variavel -> ID EQUALS valor
 Rule 9     valor -> NUMBER
 Rule 10    valor -> CHAR
 Rule 11    valor -> STRING
+Rule 12    comando -> IF LPAREN condicao RPAREN LBRACE comandos RBRACE
+Rule 13    comando -> IF LPAREN condicao RPAREN LBRACE comandos RBRACE ELSE LBRACE comandos RBRACE
+Rule 14    comando -> SWITCH LPAREN ID RPAREN LBRACE lista_cases RBRACE
+Rule 15    lista_cases -> lista_cases case
+Rule 16    lista_cases -> case
+Rule 17    lista_cases -> default
+Rule 18    case -> CASE valor COLON LBRACE comandos BREAK SEMICOLON RBRACE
+Rule 19    default -> DEFAULT COLON LBRACE comandos RBRACE
+Rule 20    condicao -> ID relop valor
+Rule 21    relop -> EQEQ
+Rule 22    relop -> NE
+Rule 23    relop -> LT
+Rule 24    relop -> GT
+Rule 25    relop -> LE
+Rule 26    relop -> GE
+Rule 27    comandos -> comandos comando_matematico
+Rule 28    comandos -> comando_matematico
+Rule 29    comando_matematico -> ID EQUALS expressao SEMICOLON
+Rule 30    expressao -> valor
+Rule 31    expressao -> valor operador valor
+Rule 32    operador -> PLUS
+Rule 33    operador -> MINUS
+Rule 34    operador -> TIMES
+Rule 35    operador -> DIVIDE
 
 Terminals, with rules where they appear
 
+BREAK                : 18
+CASE                 : 18
 CHAR                 : 10
 CHAR_TYPE            : 4
+COLON                : 18 19
 COMMA                : 6
-EQUALS               : 8
+DEFAULT              : 19
+DIVIDE               : 35
+ELSE                 : 13
+EQEQ                 : 21
+EQUALS               : 8 29
 FLOAT                : 3
-ID                   : 7 8
+GE                   : 26
+GT                   : 24
+ID                   : 7 8 14 20 29
+IF                   : 12 13
 INT                  : 2
+LBRACE               : 12 13 13 14 18 19
+LE                   : 25
+LPAREN               : 12 13 14
+LT                   : 23
+MINUS                : 33
+NE                   : 22
 NUMBER               : 9
-SEMICOLON            : 1
+PLUS                 : 32
+RBRACE               : 12 13 13 14 18 19
+RPAREN               : 12 13 14
+SEMICOLON            : 1 18 29
 STRING               : 11
+SWITCH               : 14
+TIMES                : 34
 error                : 
 
 Nonterminals, with rules where they appear
 
+case                 : 15 16
+comando              : 
+comando_matematico   : 27 28
+comandos             : 12 13 13 18 19 27
+condicao             : 12 13
 declaracoes          : 0
+default              : 17
+expressao            : 29
+lista_cases          : 14 15
 lista_variaveis      : 1 6
+operador             : 31
+relop                : 20
 tipo                 : 1
-valor                : 8
+valor                : 8 18 20 30 31 31
 variavel             : 5 6
 
 Parsing method: LALR
