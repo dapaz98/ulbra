@@ -13,28 +13,19 @@ DIR_FILE_CREDIT_ANALISYS = "/home/eduardo-da-paz/Documents/university/ulbra/dsi/
 def main():
     if DIR_FILE_CREDIT_ANALISYS:
         df_heart_disease = pd.read_csv(DIR_FILE_CREDIT_ANALISYS, index_col="id")
-        normalization_process(df_heart_disease)
-
-
-        # Aplicar processamento
         X_train, X_test, y_train, y_test, preprocessor = normalization_process(df_heart_disease)
 
-        # Ajustar pré-processamento nos dados de treino
-        preprocessor.fit(X_train)
 
-        # Transformar dados
-        X_train_processed = preprocessor.transform(X_train)
-        X_test_processed = preprocessor.transform(X_test)
 
         clf = Pipeline(steps=[
             ('preprocessor', preprocessor),
             ('classifier', MLPClassifier(hidden_layer_sizes=(10, 5), max_iter=1000, random_state=42))
         ])
 
-        clf.fit(X_train_processed, y_train)
+        clf.fit(X_train, y_train)
 
 
-        y_pred = clf.predict(X_test_processed)
+        y_pred = clf.predict(X_test)
 
 
         print("Acurácia:", accuracy_score(y_test, y_pred))

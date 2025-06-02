@@ -57,8 +57,9 @@ def normalization_process(df: pd.DataFrame):
 
     data_balancing(y)
 
-    X_train, X_test, y_train, y_test = split_dataset(X, y)
-
     preprocessor = create_preprocessor(X)
-
+    X_train, X_test, y_train, y_test = split_dataset(X, y)
+    X_train = create_preprocessor(X_train)
+    X_test = create_preprocessor(X_test)
+    
     return X_train, X_test, y_train, y_test, preprocessor
