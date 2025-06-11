@@ -22,6 +22,13 @@ reserved = {
     'default': 'DEFAULT',
     'break': 'BREAK'
 }
+
+reserved.update({
+    'while': 'WHILE',
+    'for': 'FOR'
+})
+tokens += ['WHILE', 'FOR']
+
 tokens += list(reserved.values())
 
 # Expressões regulares

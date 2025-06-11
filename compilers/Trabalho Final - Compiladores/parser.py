@@ -71,6 +71,23 @@ def p_relop(p):
              | GE'''
     p[0] = p[1]
 
+# Comandos de repetição - ETAPA 3
+def p_comando_while(p):
+    '''comando : WHILE LPAREN condicao RPAREN LBRACE comandos RBRACE'''
+    print("Comando WHILE reconhecido")
+
+def p_comando_for(p):
+    '''comando : FOR LPAREN inicializacao SEMICOLON condicao SEMICOLON incremento RPAREN LBRACE comandos RBRACE'''
+    print("Comando FOR reconhecido")
+
+def p_inicializacao(p):
+    '''inicializacao : ID EQUALS valor'''
+    p[0] = (p[1], p[3])
+
+def p_incremento(p):
+    '''incremento : ID EQUALS expressao'''
+    p[0] = (p[1], p[3])
+
 # Expressões e comandos matemáticos
 def p_comandos(p):
     '''comandos : comandos comando_matematico
@@ -84,7 +101,7 @@ def p_comando_matematico(p):
 def p_expressao(p):
     '''expressao : valor
                  | valor operador valor'''
-    pass
+    p[0] = (p[1], p[2], p[3]) if len(p) == 4 else p[1]
 
 def p_operador(p):
     '''operador : PLUS
@@ -105,7 +122,9 @@ def main():
         "char c = 'a';",
         "char nome = \"Ana\";",
         "if (x > 5) { a = 3; } else { a = 2; }",
-        "switch(x) { case 1: { y = 10; break; } default: { y = 0; } }"
+        "switch(x) { case 1: { y = 10; break; } default: { y = 0; } }",
+        "while (a < 10) { a = a + 1; }",
+        "for (i = 0; i < 5; i = i + 1) { x = x * 2; }"
     ]
 
     for entrada in entradas:
